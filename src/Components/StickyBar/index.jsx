@@ -12,15 +12,19 @@ import { CiUser } from "react-icons/ci";
 
 const index = () => {
     const [activeMenu, setActiveMenu] = useState("home");
+    const [card, setCard] = useState([])
 
     function handleActive(event) {
         const newActiveMenu = event.target.getAttribute('values');
         setActiveMenu(newActiveMenu);
     }
     const [addedCount, setAddedCount] = useState(0);
-    function addCountFunc() {
+    function addCountFunc(value) {
         setAddedCount(addedCount + 1);
+        setCard([...card, value]);
+        console.log(card);
     }
+
 
     return (
         <div className='sticky-bar'>

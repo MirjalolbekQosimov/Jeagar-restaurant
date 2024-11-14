@@ -84,9 +84,7 @@ const index = ({ count }) => {
 
     ]
 
-    function handleAddItem() {
-        count()
-    }
+
     return (
         <div>
             <div className='menu-navbar'>
@@ -130,7 +128,7 @@ const index = ({ count }) => {
                             <p className='product-name'>{item.name}</p>
                             <p className='product-price'>{item.price}</p>
                             <p className='product-residue'>{item.residue} Bowls available</p>
-                            <button className='product-button' onClick={handleAddItem}>Add</button>
+                            <button className='product-button' onClick={() => count(item)}>Add</button>
                         </div>
                     </div>
                 ))}
