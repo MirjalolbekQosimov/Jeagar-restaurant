@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './StickyBar.css'
 import Menu from '../Menu'
+import Cart from '../Cart'
 import { FaBars } from "react-icons/fa6";
 import { GoHome } from "react-icons/go";
 import { CiDiscount1 } from "react-icons/ci";
@@ -13,6 +14,7 @@ import { CiUser } from "react-icons/ci";
 const index = () => {
     const [activeMenu, setActiveMenu] = useState("home");
     const [card, setCard] = useState([])
+    const [cartMenu, setCardMenu] = useState(false)
 
     function handleActive(event) {
         const newActiveMenu = event.target.getAttribute('values');
@@ -24,7 +26,10 @@ const index = () => {
         setCard([...card, value]);
         console.log(card);
     }
-
+    function handleToggleCart(event) {
+        setCardMenu(!cartMenu);
+        handleActive(event)
+    }
 
     return (
         <div className='sticky-bar'>
@@ -56,11 +61,10 @@ const index = () => {
                             <IoIosNotificationsOutline />
                         </div>
                     </a>
-                    <a href="#cart" className={activeMenu === "cart" ? 'activeMenu' : null} values='cart' onClick={handleActive}>
-                        <div className='cartNum'>
+                    <a href="#cart" className={activeMenu === "cart" ? 'activeMenu' : null} values='cart' onClick={handleToggleCart} >
+                        <div className='cartNum' >
                             <IoCartOutline />
                             {addedCount == 0 ? null : <span className='addcountnumber'>{addedCount}</span>}
-
                         </div>
                     </a>
                 </div>
@@ -71,6 +75,7 @@ const index = () => {
             <div className='menu-container'>
                 <Menu count={addCountFunc} />
             </div>
+            <Cart opencart={cartMenu} data={card} toggle={handleToggleCart} title='Orders #34562' />
         </div>
     )
 }
