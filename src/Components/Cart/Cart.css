@@ -137,3 +137,47 @@
 .trash-icon {
     color: #EA7C69;
 }
+
+.total-price {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.total-price p {
+    display: flex;
+    color: #ABBBC2;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.cartButton {
+    width: 100%;
+    height: 48px;
+    color: white;
+    background-color: #EA7C69;
+    border-radius: 8px;
+    border: 0;
+    cursor: pointer;
+
+}
+
+.no-orders {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.no-orders div {
+    text-align: center;
+}
+
+.no-orders p {
+    color: rgba(224, 230, 233, 1);
+    margin-top: 25px;
+}
+
+.buy-button {
+    margin-top: 50px;
+}

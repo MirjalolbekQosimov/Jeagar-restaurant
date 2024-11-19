@@ -6,12 +6,9 @@ import FoodImg2 from '../../assets/Image2.png';
 import FoodImg3 from '../../assets/Image3.png';
 import FoodImg4 from '../../assets/Image4.png';
 
-
-
-const index = ({ count }) => {
+const index = ({ addCountFunc }) => {
     const [currentDate, setCurrentDate] = useState('');
     const [foodActive, setFoodActive] = useState('hod')
-
     useEffect(() => {
         const date = new Date();
         const options = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' };
@@ -24,66 +21,66 @@ const index = ({ count }) => {
         setFoodActive(newActiveMenu);
     }
 
+
     const data = [
         {
             id: 1,
             image: FoodImg1,
             name: 'Spicy seasoned seafood noodles',
-            price: '$ 2.29',
+            price: 2.29,
             residue: 20,
         },
         {
             id: 2,
             image: FoodImg2,
             name: 'Salted Pasta with mushroom sauce',
-            price: '$ 2.69',
+            price: 2.69,
             residue: 11,
         },
         {
             id: 3,
             image: FoodImg3,
             name: 'Beef dumpling in hot and sour soup',
-            price: '$ 2.99',
+            price: 2.99,
             residue: 16,
         },
         {
             id: 4,
             image: FoodImg4,
             name: 'Healthy noodle with spinach leaf',
-            price: '$ 3.29',
+            price: 3.29,
             residue: 22,
         },
         {
             id: 5,
             image: FoodImg1,
             name: 'Spicy seasoned seafood noodles',
-            price: '$ 2.29',
+            price: 2.29,
             residue: 20,
         },
         {
             id: 6,
             image: FoodImg2,
             name: 'Salted Pasta with mushroom sauce',
-            price: '$ 2.69',
+            price: 2.69,
             residue: 11,
         },
         {
             id: 7,
             image: FoodImg3,
             name: 'Beef dumpling in hot and sour soup',
-            price: '$ 2.99',
+            price: 2.99,
             residue: 16,
         },
         {
             id: 8,
             image: FoodImg4,
             name: 'Healthy noodle with spinach leaf',
-            price: '$ 3.29',
+            price: 3.29,
             residue: 22,
         },
 
     ]
-
 
     return (
         <div>
@@ -126,14 +123,13 @@ const index = ({ count }) => {
                         </div>
                         <div className='menu-item-details'>
                             <p className='product-name'>{item.name}</p>
-                            <p className='product-price'>{item.price}</p>
+                            <p className='product-price'>$ {item.price}</p>
                             <p className='product-residue'>{item.residue} Bowls available</p>
-                            <button className='product-button' onClick={() => count(item)}>Add</button>
+                            <button className='product-button' onClick={() => addCountFunc(item)}>Add</button>
                         </div>
                     </div>
                 ))}
             </div>
-
         </div>
     )
 }

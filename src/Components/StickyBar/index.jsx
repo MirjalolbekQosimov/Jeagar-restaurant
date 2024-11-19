@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import './StickyBar.css'
-import Menu from '../Menu'
-import Cart from '../Cart'
 import { FaBars } from "react-icons/fa6";
 import { GoHome } from "react-icons/go";
 import { CiDiscount1 } from "react-icons/ci";
@@ -11,26 +9,18 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 import { IoCartOutline } from "react-icons/io5";
 import { CiUser } from "react-icons/ci";
 
-const index = () => {
+const index = ({ HandleOpenCart, addedCount }) => {
     const [activeMenu, setActiveMenu] = useState("home");
-    const [card, setCard] = useState([])
-    const [cartMenu, setCardMenu] = useState(false)
 
     function handleActive(event) {
         const newActiveMenu = event.target.getAttribute('values');
         setActiveMenu(newActiveMenu);
     }
-    const [addedCount, setAddedCount] = useState(0);
-    function addCountFunc(value) {
-        setAddedCount(addedCount + 1);
-        setCard([...card, value]);
-        console.log(card);
-    }
-    function handleToggleCart(event) {
-        setCardMenu(!cartMenu);
-        handleActive(event)
-    }
 
+    function CartClick() {
+        handleActive(event)
+        HandleOpenCart()
+    }
     return (
         <div className='sticky-bar'>
             <div className="left-menu">
@@ -61,10 +51,10 @@ const index = () => {
                             <IoIosNotificationsOutline />
                         </div>
                     </a>
-                    <a href="#cart" className={activeMenu === "cart" ? 'activeMenu' : null} values='cart' onClick={handleToggleCart} >
-                        <div className='cartNum' >
-                            <IoCartOutline />
-                            {addedCount == 0 ? null : <span className='addcountnumber'>{addedCount}</span>}
+                    <a href="#cart" className={activeMenu === "cart" ? 'activeMenu' : null} values='cart' onClick={CartClick}  >
+                        <div className='cartNum' onClick={CartClick}>
+                            <IoCartOutline onClick={CartClick} />
+                            {addedCount ? <span className='addcountnumber'>{addedCount}</span> : null}
                         </div>
                     </a>
                 </div>
@@ -72,10 +62,6 @@ const index = () => {
                     <CiUser />
                 </a>
             </div>
-            <div className='menu-container'>
-                <Menu count={addCountFunc} />
-            </div>
-            <Cart opencart={cartMenu} data={card} toggle={handleToggleCart} title='Orders #34562' />
         </div>
     )
 }
