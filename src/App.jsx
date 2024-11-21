@@ -12,10 +12,12 @@ function App() {
   function HandleOpenCart() {
     setOpenCart(!openCart);
   }
+  function HandleCloseCart() {
+    setOpenCart(false);
+  }
 
   function addCountFunc(value) {
     setAddedCount(addedCount + 1);
-
     let resultCart = localData.findIndex(obj => obj.id === value.id);
     if (resultCart > -1) {
       const updatedCard = [...localData];
@@ -29,10 +31,9 @@ function App() {
     }
   }
 
-
   return (
     <div className='App'>
-      <StickyBar HandleOpenCart={HandleOpenCart} addedCount={addedCount} />
+      <StickyBar HandleOpenCart={HandleOpenCart} addedCount={addedCount} HandleCloseCart={HandleCloseCart} />
       <div className='menu-container'>
         <Menu addCountFunc={addCountFunc} />
       </div>
